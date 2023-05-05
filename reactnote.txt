@@ -1,0 +1,74 @@
+
+
+        React - Front End Technology - Library
+    -----------------------------------------------
+
+    **** Commands ****
+
+    1. create project: npx create-react-app project-name
+    2. to run project: npm start
+    3. install material ui: npm install @mui/material @emotion/react @emotion/styled
+    4. install react bootstrap: npm install react-bootstrap bootstrap
+    5. install react-router-dom: npm i react-router-dom
+    6. instal redux: npm i redux react-redux redux-thunkpm 
+    7. instal react-select: npm i react-select
+
+
+    **** Features ****
+
+    1. Component Based Approach
+    2. JSX (Javascript XML)
+    3. Virtual DOM
+    4. Fast
+
+    5.  Angular                  React                   Vue
+        ---------------------------------------------------------
+        - Framework:            - Library:              - Framework:
+            - google                - Facebook              - Open Source
+        - TypeScript            - Javascript            - Javascript
+        - Real DOM              - Virtual DOM           - Virtual DOM
+        - two way binding       - One way binding       - two way binding
+        
+    6. Components: component file name start with Capital letter
+        - Class Based Components/ stateful component
+        - Functional Based Components/ stateless component
+
+    7. Conditional Rendering
+
+    8. State: Used to store data inside a components and it can be shared with other components as well
+        - syntax: const [state-name,function-name to update state] = useState(initial-value)
+        - to update state: function-name(value_to_be_updated) - it will update state value
+
+    9. Data shairing from parent to child(only one way binding is possible in react)
+        - Using Props
+
+    10. React Hooks
+        - useState(): to generate state in Functional component
+        - useEffect(): allows to perform side effects in your components.
+        - useParams(): return an object of key/value pairs of the dynamic params from the current URL
+        - createStore(): to create store in redux
+        - useDispatch() : dispatch actions from an component in react-redux
+        - useSelector(): to select update state from store in react-redux
+        - useNavigate(): to redirect from one page to another
+        
+    11. To display an array: map array method
+    12. react-router-dom library: To set up route for components
+        - route: setup path for each componet
+        - routes: to hold more route
+        - BrowserRouter: to routes all components
+        - Link: to navigate from one webpage to another 
+    13. REDUX: State Management
+        - store: to hold all state, where all components can access state
+            - create store.js file in src folder
+            - createStore hook - to create store
+            - Provide the store to app: using <Provider> in index.js file
+        - action: to define logic needed by component to update state
+            - create action folder in src
+                - inside action folder, create action js file
+                - useDispatch hook : dispatch actions from an component
+        - create constants folder in src
+                - inside constants folder, create constants js file to hold constants
+        - reducer: to update state and adding the update state in store
+            - create reducers folder in src
+                - inside reducers folder, create reducer js file
+           
