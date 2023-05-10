@@ -50,6 +50,7 @@
         - useDispatch() : dispatch actions from an component in react-redux
         - useSelector(): to select update state from store in react-redux
         - useNavigate(): to redirect from one page to another
+        - useContext(): share state between deeply nested components
         
     11. To display an array: map array method
     12. react-router-dom library: To set up route for components
@@ -71,4 +72,5 @@
         - reducer: to update state and adding the update state in store
             - create reducers folder in src
                 - inside reducers folder, create reducer js file
+    14. createContext: create a context that components can provide or read
            

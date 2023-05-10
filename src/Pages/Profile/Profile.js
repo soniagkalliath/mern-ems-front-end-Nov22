@@ -1,10 +1,22 @@
-import React from 'react';
+import React,{useState,useEffect} from 'react';
 import './Profile.css';
 import { Card,Row } from 'react-bootstrap';
+import LoadingSpinner from '../../Components/Spinners/LoadingSpinner';
 
 function Profile() {
+   //spinner state
+   const [showSpin,setShowSpin]= useState(true)
+
+   useEffect(()=>{
+    setTimeout(() => {
+      setShowSpin(false)
+    }, 2000);
+  },[])
+
   return (
     <>
+{
+  showSpin ?             <div className='d-flex justify-content-center mt-5'> <LoadingSpinner/> </div> :  
       <div className="container">
         <Card className='shadow col-lg-6 mx-auto mt-5'>
           <Card.Body>
@@ -28,7 +40,7 @@ function Profile() {
 
         </Card>
       </div>
-
+}
     </>
   )
 }

@@ -1,18 +1,36 @@
-import React from 'react';
+import React,{useState,useEffect, useContext} from 'react';
 import './Home.css';
-import { Form,Button } from 'react-bootstrap';
+import { Form,Button, Alert } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import Hometable from '../../Components/HomeTable/Hometable';
+import LoadingSpinner from '../../Components/Spinners/LoadingSpinner';
+import { addData } from '../../Components/contexts/ContextShare';
 
 function Home() {
   const navigate = useNavigate()
-
+  //get data from register page
+  const {useradd,setUserAdd} = useContext(addData)
+  console.log(useradd);
+  //spinner state
+  const [showSpin,setShowSpin]= useState(true)
   const adduser = ()=>{
     //navigate to register page
     navigate('/register')
   }
+
+  useEffect(()=>{
+    setTimeout(() => {
+      setShowSpin(false)
+    }, 2000);
+  },[])
+
   return (
     <>
+    {
+      useradd?<Alert variant="success" onClose={() => setUserAdd("")} dismissible>
+          {useradd.fname.toUpperCase()} Successfully Registered....
+      </Alert>:""
+    }
     
       <div className='container mt-5'>
         
@@ -33,7 +51,10 @@ function Home() {
 
         <div className="second_div">
           {/* table */}
-          <Hometable/>
+          {
+            showSpin ? 
+            <div className='d-flex justify-content-center mt-5'> <LoadingSpinner/> </div> :  <Hometable/>
+          }
         </div>
 
       </div>
