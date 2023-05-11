@@ -5,12 +5,17 @@ import { useNavigate } from 'react-router-dom';
 import Hometable from '../../Components/HomeTable/Hometable';
 import LoadingSpinner from '../../Components/Spinners/LoadingSpinner';
 import { addData } from '../../Components/contexts/ContextShare';
+import {getallusers} from '../../Services/allApi';
 
 function Home() {
+
+  //to hold all users
+  const [userdata,setUserdata] = useState([])
+
   const navigate = useNavigate()
   //get data from register page
   const {useradd,setUserAdd} = useContext(addData)
-  console.log(useradd);
+  // console.log(useradd);
   //spinner state
   const [showSpin,setShowSpin]= useState(true)
   const adduser = ()=>{
@@ -18,7 +23,22 @@ function Home() {
     navigate('/register')
   }
 
+  //api call to get all users
+
+  const getalluserData = async ()=>{
+    const response = await getallusers()
+    if(response.status===200){
+      setUserdata(response.data);
+    }
+    else{
+      console.log('Cannot fetch data!!!!');
+    }
+  }
+
+  // console.log(userdata);
+
   useEffect(()=>{
+    getalluserData()
     setTimeout(() => {
       setShowSpin(false)
     }, 2000);
@@ -53,7 +73,7 @@ function Home() {
           {/* table */}
           {
             showSpin ? 
-            <div className='d-flex justify-content-center mt-5'> <LoadingSpinner/> </div> :  <Hometable/>
+            <div className='d-flex justify-content-center mt-5'> <LoadingSpinner/> </div> :  <Hometable  displayData={userdata} />
           }
         </div>
 

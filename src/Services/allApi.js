@@ -6,3 +6,8 @@ import { commonRequest } from "./commonRequest"
 export const empRegister = async(body,header)=>{
  return await  commonRequest("POST",`${BASE_URL}/employee/register`,body,header)
 }
+
+//getallusers api
+export const getallusers = async ()=>{
+    return await commonRequest("GET",`${BASE_URL}/get-all-employees`,"")
+}
