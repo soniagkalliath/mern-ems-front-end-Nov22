@@ -18,7 +18,7 @@ function Hometable({displayData}) {
                     <th>No</th>
                     <th>Full Name</th>
                     <th>Email</th>
-                    <th>Gender</th>
+                    <th>Mobile</th>
                     <th>Status</th>
                     <th>Profile</th>
                     <th>Action</th>
@@ -31,7 +31,7 @@ function Hometable({displayData}) {
                     <td> {index+1} </td>
                     <td>{item.fname} &nbsp; {item.lname}</td>
                     <td>{item.email}</td>
-                    <td>{item.gender}</td>
+                    <td>{item.mobile}</td>
                     <td>
                       <Dropdown>
                         <Dropdown.Toggle  variant={item.status==='Active'?'primary':'danger' } id="dropdown-basic">
