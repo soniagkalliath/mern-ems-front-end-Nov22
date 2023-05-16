@@ -16,3 +16,8 @@ export const getallusers = async ()=>{
 export const viewUser = async(id) =>{
     return await commonRequest("GET",`${BASE_URL}/employee/view/${id}`,"")
 }
+
+//edituser
+export const editUser = async (id,body,header) =>{
+    return await  commonRequest("PUT",`${BASE_URL}/employee/edit/${id}`,body,header)
+}

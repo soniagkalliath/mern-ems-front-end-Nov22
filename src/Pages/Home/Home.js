@@ -4,10 +4,14 @@ import { Form,Button, Alert } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import Hometable from '../../Components/HomeTable/Hometable';
 import LoadingSpinner from '../../Components/Spinners/LoadingSpinner';
-import { addData } from '../../Components/contexts/ContextShare';
+import { addData, updateDate } from '../../Components/contexts/ContextShare';
 import {getallusers} from '../../Services/allApi';
 
+
 function Home() {
+
+  //use useContex
+  const {editdata, seteditdata} = useContext(updateDate)
 
   //to hold all users
   const [userdata,setUserdata] = useState([])
@@ -50,6 +54,11 @@ function Home() {
       useradd?<Alert variant="success" onClose={() => setUserAdd("")} dismissible>
           {useradd.fname.toUpperCase()} Successfully Registered....
       </Alert>:""
+    }
+    {
+      editdata?<Alert variant="success" onClose={() => seteditdata("")} dismissible>
+      {editdata.fname.toUpperCase()} Successfully updated....
+  </Alert>:""
     }
     
       <div className='container mt-5'>
