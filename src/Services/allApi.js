@@ -8,8 +8,8 @@ export const empRegister = async(body,header)=>{
 }
 
 //getallusers api
-export const getallusers = async ()=>{
-    return await commonRequest("GET",`${BASE_URL}/get-all-employees`,"")
+export const getallusers = async (search)=>{
+    return await commonRequest("GET",`${BASE_URL}/get-all-employees?search=${search}`,"")
 }
 
 //get a particular user api
@@ -20,4 +20,10 @@ export const viewUser = async(id) =>{
 //edituser
 export const editUser = async (id,body,header) =>{
     return await  commonRequest("PUT",`${BASE_URL}/employee/edit/${id}`,body,header)
+}
+
+//deleteuser
+export const deleteuser = async (id) =>{
+    console.log(id);
+    return await commonRequest("DELETE",`${BASE_URL}/employee/deleteuser/${id}`,{})
 }

@@ -3,7 +3,7 @@ import { Row, Card, Table, Dropdown, Badge } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { BASE_URL } from "../../Services/base_url";
 
-function Hometable({displayData}) {
+function Hometable({displayData,deleteUser}) {
   console.log(displayData);
 
   return (
@@ -62,7 +62,7 @@ function Hometable({displayData}) {
                             </Link>
                           </Dropdown.Item>
                           <Dropdown.Item >
-                            <div>
+                            <div onClick={()=>deleteUser(item._id)}>
                                 <i className="fa-solid fa-trash text-danger me-2 fs-5"></i> 
                                 <span className="fs-5 text-dark">Delete</span>
                             </div>

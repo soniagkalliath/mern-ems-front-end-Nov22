@@ -4,14 +4,18 @@ import { Form,Button, Alert } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import Hometable from '../../Components/HomeTable/Hometable';
 import LoadingSpinner from '../../Components/Spinners/LoadingSpinner';
-import { addData, updateDate } from '../../Components/contexts/ContextShare';
-import {getallusers} from '../../Services/allApi';
+import { addData, deleteData, updateDate } from '../../Components/contexts/ContextShare';
+import {deleteuser, getallusers} from '../../Services/allApi';
 
 
 function Home() {
 
+  //state to hold search key
+  const [search,setSearch] = useState("")
+
   //use useContex
   const {editdata, seteditdata} = useContext(updateDate)
+  const {deletedata, setdeletedata} = useContext(deleteData)
 
   //to hold all users
   const [userdata,setUserdata] = useState([])
@@ -30,7 +34,7 @@ function Home() {
   //api call to get all users
 
   const getalluserData = async ()=>{
-    const response = await getallusers()
+    const response = await getallusers(search)
     if(response.status===200){
       setUserdata(response.data);
     }
@@ -39,14 +43,28 @@ function Home() {
     }
   }
 
-  // console.log(userdata);
+  //delete user
+  const deleteUser = async (id)=>{
+    //make an api call
+    const response = await deleteuser(id)
+    console.log(response);
+    if(response.status===200){
+      getalluserData()
+      setdeletedata(response.data)
+    }
+    else{
+      console.log("error");
+    }
+  }
+
+
 
   useEffect(()=>{
     getalluserData()
     setTimeout(() => {
       setShowSpin(false)
     }, 2000);
-  },[])
+  },[search])
 
   return (
     <>
@@ -60,6 +78,11 @@ function Home() {
       {editdata.fname.toUpperCase()} Successfully updated....
   </Alert>:""
     }
+    {
+      deletedata?<Alert variant="danger" onClose={() => setdeletedata("")} dismissible>
+      {deletedata.fname.toUpperCase()} Successfully removed....
+  </Alert>:""
+    }
     
       <div className='container mt-5'>
         
@@ -68,7 +91,9 @@ function Home() {
             <div className="search_Add d-flex justify-content-between">
               <div className="search col-md-4">
                   <Form className='d-flex'>
-                    <Form.Control type="text" placeholder="Search" className='me-2' />
+                    <Form.Control type="text" placeholder="Search" className='me-2' 
+                    onChange={e=>setSearch(e.target.value)}
+                    />
                     <Button variant='primary'>Search</Button>
                   </Form>
               </div>
@@ -82,7 +107,9 @@ function Home() {
           {/* table */}
           {
             showSpin ? 
-            <div className='d-flex justify-content-center mt-5'> <LoadingSpinner/> </div> :  <Hometable  displayData={userdata} />
+            <div className='d-flex justify-content-center mt-5'> <LoadingSpinner/> </div> :  <Hometable  displayData={userdata} 
+            deleteUser={deleteUser}
+            />
           }
         </div>
 
